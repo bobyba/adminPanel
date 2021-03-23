@@ -1,29 +1,17 @@
-.header {
-  color: white;
-  margin: 0 0 32px 55px;
-  font-size: 30px;
-  line-height: 24px;
-  font-weight: 700;
-}
-
-.NavLink:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-.superClass {
-  color: rgb(199, 0, 0);
-}
-
-.contSliders {
+.parent {
   width: 100%;
-}
-
-.contDisplay {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
+  align-items: center;
+  align-content: center;
   justify-content: center;
+  overflow: auto;
 }
 
-.firstPage {
-  padding-bottom: 40px;
+.block {
+  margin: auto;
+  font-weight: 600;
 }

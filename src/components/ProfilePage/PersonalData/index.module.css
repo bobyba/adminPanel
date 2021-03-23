@@ -7,11 +7,12 @@
 }
 
 .container {
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .btn{
-  margin: 20px auto;
+  margin: 25px auto;
 }

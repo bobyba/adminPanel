@@ -1,9 +1,9 @@
 import React from "react";
 import { List, Avatar, Button, Skeleton } from "antd";
 import s from "./index.module.css";
+import Checkbox from "antd/lib/checkbox/Checkbox";
 
 const ListRender = (props) => {
-  debugger;
   return (
     <List
       className="das"
@@ -15,30 +15,22 @@ const ListRender = (props) => {
         <List.Item
           className={s.listItem}
           actions={[
-            <a
-              type="link"
-              key="list-loadmore-more"
-              onClick={() => {
-                debugger;
-                props.selectItem(item);
-              }}
-            >
-              ещё
-            </a>,
+            <div style={{ marginRight: "-2.5vw" }}>
+              {props.checkbox ? <Checkbox /> : <a>ещё</a>}
+            </div>,
           ]}
+          onClick={() => {
+            {
+              props.selectItem && props.selectItem(item);
+            }
+          }}
         >
           <List.Item.Meta
-            avatar={
-              props.avatar ? (
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              ) : (
-                ""
-              )
-            }
-            title={item.name}
+            avatar={props.avatar ? <Avatar src={props.avatar} /> : ""}
+            title={item.fio || item.label}
             description={item.descrip}
           />
-          {props.price && <div>{item.price} руб</div>}
+          {props.price && <div>{item.price} P</div>}
         </List.Item>
       )}
     />

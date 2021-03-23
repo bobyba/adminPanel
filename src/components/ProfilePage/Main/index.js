@@ -9,7 +9,6 @@ const Main = (props) => {
       <span className={s.text}>Здравствуйте, Елена Владимировна!</span>
       <Button
         className={s.Button}
-        block
         onClick={() => {
           props.setStep("timetable");
         }}
@@ -18,7 +17,6 @@ const Main = (props) => {
       </Button>
       <Button
         className={s.Button}
-        block
         onClick={() => {
           props.setStep("offers");
         }}
@@ -27,14 +25,19 @@ const Main = (props) => {
       </Button>
       <Button
         className={s.Button}
-        block
         onClick={() => {
           props.setStep("personal-data");
         }}
       >
         Личные данные
       </Button>
-      <Button className={s.Button} style={{ borderColor: "red" }} block>
+      <Button
+        className={s.Button}
+        onClick={() => {
+          props.setAuthThunk();
+        }}
+        style={{ borderColor: "red" }}
+      >
         Выйти
       </Button>
     </div>

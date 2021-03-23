@@ -27,16 +27,3 @@
 ::-webkit-scrollbar {
   width: 0px;
 }
-
-.ant-input:hover {
-  border-color: black !important;
-}
-
-.ant-input:focus,
-.ant-input-focused {
-  border-color: black !important;
-  border-right-width: 1px !important;
-  outline: 0;
-  -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
-}

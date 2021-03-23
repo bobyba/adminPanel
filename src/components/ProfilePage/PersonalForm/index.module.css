@@ -1,0 +1,48 @@
+.Header {
+  font-size: 16px;
+}
+
+.label{
+  font-weight: 500;
+}
+
+.fio {
+  width: 85.5vw;
+  margin-left: 2px;
+}
+
+.form {
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 75px 255px 45px;
+}
+
+.form2{
+  grid-template-rows: 75px 180px 45px;
+}
+
+.formSub {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 44vw 44vw;
+  grid-template-rows: 75px 75px 75px;
+}
+
+.Input {
+  width: 41vw;
+}
+
+.InputCont {
+  display: flex;
+  justify-content: center;
+  width: 41vw;
+}
+
+.passCont{
+  display: flex;
+  justify-content: space-between;
+}
+
+.InputPass{
+  width: 19vw;
+}

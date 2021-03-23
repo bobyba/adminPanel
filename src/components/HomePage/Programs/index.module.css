@@ -1,0 +1,6 @@
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-column-gap: 24px;
+  grid-row-gap: 0px;
+}

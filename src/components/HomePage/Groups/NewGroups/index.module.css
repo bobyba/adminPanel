@@ -1,0 +1,90 @@
+.table {
+}
+
+.parent {
+  background-color: white;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 15px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div3 {
+  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+}
+.div4 {
+  grid-area: 2 / 2 / 3 / 3;
+}
+.div5 {
+  grid-area: 3 / 1 / 4 / 2;
+}
+.div6 {
+  grid-area: 3 / 2 / 4 / 3;
+}
+.div7 {
+  grid-area: 4 / 1 / 5 / 2;
+}
+.div8 {
+  grid-area: 4 / 2 / 5 / 3;
+}
+
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-column-gap: 24px;
+  grid-row-gap: 0px;
+}
+
+.header {
+  color: black;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.headerLast {
+  color: black;
+  font-weight: 500;
+  margin-bottom: -5px;
+}
+
+.link{
+  text-align: center;
+  width: 100%;
+}
+
+.periodCourse {
+  display: flex;
+}
+
+.contBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.descrip {
+  height: 78%;
+}
+
+.contAva {
+  display: flex;
+  justify-content: center;
+}
+
+.Avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.teacherName {
+  font-weight: 700;
+  text-decoration: underline;
+}

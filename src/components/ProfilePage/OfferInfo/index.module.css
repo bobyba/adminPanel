@@ -1,0 +1,29 @@
+.Button {
+  width: 336px;
+  height: 40px;
+  background: #fdfdfd;
+  border: 1px solid #1890ff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.contButtons {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  margin-top: 20px;
+  grid-template-rows: 60px 60px 60px;
+}
+
+@media (max-height: 570px) {
+  .Button {
+    width: 100%;
+  }
+}
+
+.text {
+  font-size: 14px;
+  line-height: 18px;
+}

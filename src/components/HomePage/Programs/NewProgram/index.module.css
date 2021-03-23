@@ -1,0 +1,100 @@
+.table {
+}
+
+.parent {
+  background-color: white;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1.45fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div3 {
+  grid-area: 2 / 1 / 3 / 3;
+}
+.div4 {
+  grid-area: 3 / 1 / 4 / 2;
+}
+.div5 {
+  grid-area: 3 / 2 / 4 / 3;
+}
+.div6 {
+  grid-area: 4 / 1 / 5 / 2;
+}
+.div7 {
+  grid-area: 4 / 2 / 5 / 3;
+  display: flex;
+  width: 80%;
+}
+.div8 {
+  grid-area: 5 / 1 / 6 / 2;
+}
+.div9 {
+  grid-area: 5 / 2 / 6 / 3;
+}
+.div10 {
+  grid-area: 6 / 1 / 7 / 2;
+}
+.div11 {
+  grid-area: 6 / 2 / 7 / 3;
+}
+.div12 {
+  grid-area: 7 / 1 / 8 / 2;
+}
+.div13 {
+  grid-area: 7 / 2 / 8 / 3;
+}
+.div14 {
+  grid-area: 8 / 1 / 9 / 2;
+  width: 80%;
+}
+.div15 {
+  grid-area: 8 / 2 / 9 / 3;
+}
+
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-column-gap: 24px;
+  grid-row-gap: 0px;
+}
+
+.header {
+  color: black;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.periodCourse {
+  display: flex;
+}
+
+.contBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.extraTeacher {
+  font-size: 15;
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+
+.extraHull {
+  font-size: 15;
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+
+.period {
+  display: flex;
+  justify-content: center;
+}

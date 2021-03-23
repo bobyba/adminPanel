@@ -8,30 +8,43 @@ import TimeTable from "./TimeTable/index";
 import PersonalData from "./PersonalData";
 import OffersTable from "./Offers";
 import TimeTableSub from "./TimeTableSub";
+import PersonalForm from "./PersonalForm";
+import OffersSubTable from "./OffersSub";
+import OfferInfo from "./OfferInfo";
+
+import AuthPageContainer from "../AuthPage/indexContainer";
 
 const ProfilePage = (props) => {
+  if (!props.statusInit) {
+    return <AuthPageContainer />;
+  }
+
   let render = () => {
     switch (props.stepProfile) {
       case "main":
-        return <Main setStep={props.setStep} />;
+        return (
+          <Main setAuthThunk={props.setAuthThunk} setStep={props.setStep} />
+        );
       case "offers":
         return (
           <OffersTable
+            selectItem={props.selectChildOffers}
             userChildData={props.userData.child}
             setStep={props.setStep}
           />
         );
       case "offersSub":
         return (
-          <OffersTable
-            offersData={props.userData.child} // это
+          <OffersSubTable
+            selectedChildOffersData={props.selectedChildOffersData}
+            selectItem={props.selectChildOfferForOfferInfo}
             setStep={props.setStep}
           />
         );
-      case "offerSelectedData":
+      case "offerInfo":
         return (
-          <OffersTable
-            offerData={props.userData.child} // это
+          <OfferInfo
+            offerData={props.selectedUserDataForOfferInfo} // это
             setStep={props.setStep}
           />
         );
@@ -46,18 +59,22 @@ const ProfilePage = (props) => {
       case "timeTableSub":
         return (
           <TimeTableSub
-            selectedTimeTableData={props.timeTableData} // это
+            selectedTimeTableData={props.selectedUserDataForTimetable} // это
             setStep={props.setStep}
           />
         );
       case "personal-data":
         return (
-          <PersonalData userData={props.userData} setStep={props.setStep} />
+          <PersonalData
+            userData={props.userData}
+            selectForm={props.selectForm}
+            setStep={props.setStep}
+          />
         );
       case "personalForm":
         return (
-          <TimeTable
-            selectedUserData={props.selectUserTimeTable} // это
+          <PersonalForm
+            selectedUserData={props.selectedUserDataForForm}
             setStep={props.setStep}
           />
         );

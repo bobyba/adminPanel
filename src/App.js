@@ -8,47 +8,57 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-import AuthPageContainer from "./components/AuthPage/indexContainer.jsx";
-import SearchPageContainer from "./components/SearchPage/indexContainer.jsx";
 import ProfilePageContainer from "./components/ProfilePage/indexContainer.jsx";
-import HomePageContainer from "./components/HomePage/indexContainer.jsx";
-import HeaderBox from "./components/Header/index.jsx";
+import AdminPanelContainer from "./components/HomePage/indexContainer.jsx";
 
-import LayoutContentWrapper from "./components/utils/LayoutContentWrapper";
 import { setStepProfileThunk } from "./redux/ProfileUser";
-import { setStepHomeThunk } from "./redux/Home";
+import { setStepHomeThunk, getAllDataThunk } from "./redux/Home";
+import { initialAppThunk } from "./redux/initialApp";
+import AuthPage from "./components/AuthPage";
 
 const { Header } = Layout;
 
-class App extends React.Component {
-  render() {
+const App = (props) => {
+  // определение устройства
+
+  props.getAllDataThunk(); /// !!!!!!!!
+
+  let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(
+    navigator.userAgent
+  );
+  if (isMobile) {
     return (
-      <BrowserRouter>
-        <HeaderBox
-          setStepHome={this.props.setStepHomeThunk}
-          setStepProfile={this.props.setStepProfileThunk}
-        />
-        <LayoutContentWrapper>
-          <Switch>
-            <Route path="/auth" render={() => <AuthPageContainer />} />
-            <Route path="/search" render={() => <SearchPageContainer />} />
-            <Route path="/profile" render={() => <ProfilePageContainer />} />
-            <Route path="*" render={() => <HomePageContainer />} />
-          </Switch>
-        </LayoutContentWrapper>
-      </BrowserRouter>
+      <AuthPage
+        getAllDataThunk={props.getAllDataThunk}
+        initialApp={props.initialAppThunk}
+        statusPop={props.statusPop}
+      />
     );
   }
-}
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/admin" render={() => <ProfilePageContainer />} />
+        <Route path="*" render={() => <AdminPanelContainer />} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 let mapStateToProps = (state) => {
   return {
-    passwordStatus: state.appReducer.initialStatus,
-    statusPop: state.appReducer.statusPop,
+    initialStatus: state.appInit.initialStatus,
+    statusPop: state.appInit.statusPop,
   };
 };
 
 export default compose(
-  connect(mapStateToProps, { setStepProfileThunk, setStepHomeThunk }),
+  connect(mapStateToProps, {
+    setStepProfileThunk,
+    setStepHomeThunk,
+    initialAppThunk,
+    getAllDataThunk,
+  }),
   withRouter
 )(App);

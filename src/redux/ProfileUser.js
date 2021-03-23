@@ -1,50 +1,103 @@
 import { apiIMBD } from "../api/api";
 import { apiFirebase } from "../api/api-cloud";
 
-const SET_STEP_PROFILE = "SET_STEP_PROFILE";
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_STEP_PROFILE = "SET_STEP_PROFILE",
+  SET_USER_DATA_FOR_FORM = "SET_USER_DATA_FOR_FORM",
+  SET_USER_DATA_FOR_OFFERSSUB = "SET_USER_DATA_FOR_OFFERSSUB",
+  SET_USER_DATA_FOR_OFFER_INFO = "SET_USER_DATA_FOR_OFFER_INFO",
+  SET_USER_DATA_FOR_TIMETABLE = "SET_USER_DATA_FOR_TIMETABLE";
 
 let initialState = {
   stepProfile: "main",
+  selectedUserDataForTimetable: {},
+  selectedUserDataForForm: {},
+  selectedChildOffersData: {},
+  selectedUserDataForOfferInfo: {},
 
   userData: {
     parents: [
       {
         id: "0",
-        fio: "",
-        passport: {
-          id1part: "",
-          id2part: "",
-        },
-        phoneNumber: "",
-        email: "",
+        fio: "Eлена Владимировна Шпак",
+        id1part: "2515",
+        id2part: "123321",
+        phoneNumber: "+7 123 321 3232",
+        email: "mailru@mail.ru",
       },
       {
         id: "1",
-        fio: "",
-        passport: {
-          id1part: "",
-          id2part: "",
-        },
-        phoneNumber: "",
-        email: "",
+        fio: "Сергей Владимирович Шпак",
+        id1part: "3232",
+        id2part: "432234",
+        phoneNumber: "+7 912 321 1232",
+        email: "mailru@mail.ru",
       },
     ],
     child: [
       {
         id: "0",
-        fio: "",
-        birthday: "",
-        snils: "",
-        typeDocument: "",
-        passport: {
-          id1part: "",
-          id2part: "",
-        },
-        timeTableData: {},
+        fio: "Костя Шпак",
+        birthday: "31.12.2020",
+        snils: "42069148805",
+        typeDocument: "Паспорт",
+        id1part: "2515",
+        id2part: "312444",
+        timeTableData: [
+          {
+            title: "Химия",
+            start: "2020-12-20T14:30:00",
+          },
+          {
+            title: "Физика",
+            start: "2020-12-23T14:30:00",
+          },
+          {
+            title: "Матеш",
+            start: "2020-12-24T14:30:00",
+          },
+          {
+            title: "Англ",
+            start: "2020-12-25T14:30:00",
+            end: "2020-12-25T15:30:00",
+          },
+          {
+            title: "Англ",
+            start: "2020-12-26T14:30:00",
+          },
+          {
+            title: "Англ",
+            start: "2020-12-27T14:30:00",
+          },
+          {
+            title: "Англ",
+            start: "2020-12-25T14:30:00",
+          },
+          {
+            title: "Англ",
+            start: "2020-12-25T14:30:00",
+          },
+        ],
         paidOffers: [
           {
-            nameCourse: "",
+            nameCourse: "Химия",
+            documentLink: "",
+            idDocument: "",
+            groupID: "",
+            paidFor: "",
+            dataPaid: "",
+            dataStartCourse: "",
+          },
+          {
+            nameCourse: "Физика",
+            documentLink: "",
+            idDocument: "",
+            groupID: "",
+            paidFor: "",
+            dataPaid: "",
+            dataStartCourse: "",
+          },
+          {
+            nameCourse: "Матеш",
             documentLink: "",
             idDocument: "",
             groupID: "",
@@ -53,22 +106,21 @@ let initialState = {
             dataStartCourse: "",
           },
         ],
-        phoneNumber: "",
-        email: "",
+        phoneNumber: "+7123123123",
+        email: "main@email.com",
       },
       {
         id: "1",
-        fio: "",
-        birthday: "",
-        snils: "",
-        passport: {
-          id1part: "",
-          id2part: "",
-        },
+        fio: "Костя Шпак",
+        birthday: "31.11.2012",
+        snils: "42069148805",
+        typeDocument: "Паспорт",
+        id1part: "4343",
+        id2part: "111321",
         timeTableData: {},
         paidOffers: [
           {
-            nameCourse: "",
+            nameCourse: "Ректал",
             documentLink: "",
             idDocument: "",
             groupID: "",
@@ -77,8 +129,8 @@ let initialState = {
             dataStartCourse: "",
           },
         ],
-        phoneNumber: "",
-        email: "",
+        phoneNumber: "+79143211232",
+        email: "sad@dsa.ds",
       },
     ],
   },
@@ -93,10 +145,31 @@ const ProfileUser = (state = initialState, action) => {
       };
       return stateCopy;
     }
-    case SET_USER_DATA: {
+    case SET_USER_DATA_FOR_TIMETABLE: {
       let stateCopy = {
         ...state,
-        userData: action.userData,
+        selectedUserDataForTimetable: action.userData.timeTableData,
+      };
+      return stateCopy;
+    }
+    case SET_USER_DATA_FOR_FORM: {
+      let stateCopy = {
+        ...state,
+        selectedUserDataForForm: action.userData,
+      };
+      return stateCopy;
+    }
+    case SET_USER_DATA_FOR_OFFERSSUB: {
+      let stateCopy = {
+        ...state,
+        selectedChildOffersData: action.userData.paidOffers,
+      };
+      return stateCopy;
+    }
+    case SET_USER_DATA_FOR_OFFER_INFO: {
+      let stateCopy = {
+        ...state,
+        selectedUserDataForOfferInfo: action.userData,
       };
       return stateCopy;
     }
@@ -114,9 +187,30 @@ const setStepProfile = (step) => {
   };
 };
 
-const setUserData = (userData) => {
+const setUserDataForTimetable = (userData) => {
   return {
-    type: SET_USER_DATA,
+    type: SET_USER_DATA_FOR_TIMETABLE,
+    userData,
+  };
+};
+
+const setUserDataForForm = (userData) => {
+  return {
+    type: SET_USER_DATA_FOR_FORM,
+    userData,
+  };
+};
+
+const setUserDataForOffersSub = (userData) => {
+  return {
+    type: SET_USER_DATA_FOR_OFFERSSUB,
+    userData,
+  };
+};
+
+const setUserDataForOfferInfo = (userData) => {
+  return {
+    type: SET_USER_DATA_FOR_OFFER_INFO,
     userData,
   };
 };
@@ -127,10 +221,27 @@ export const setStepProfileThunk = (step) => async (dispatch) => {
   dispatch(setStepProfile(step));
 };
 
-export const setUserDataThunk = (dataUser) => async (dispatch) => {
-  dispatch(setUserData(dataUser));
+export const setUserDataForTimeTableThunk = (userData) => async (dispatch) => {
+  dispatch(setStepProfile("timeTableSub"));
+  dispatch(setUserDataForTimetable(userData));
 };
 
+export const selectFormUserThunk = (userData) => async (dispatch) => {
+  dispatch(setStepProfile("personalForm"));
+  dispatch(setUserDataForForm(userData));
+};
+
+export const selectChildOffersThunk = (userData) => async (dispatch) => {
+  dispatch(setStepProfile("offersSub"));
+  dispatch(setUserDataForOffersSub(userData));
+};
+
+export const selectChildOfferForOfferInfoThunk = (userData) => async (
+  dispatch
+) => {
+  dispatch(setStepProfile("offerInfo"));
+  dispatch(setUserDataForOfferInfo(userData));
+};
 /* ------------------ */
 
 export default ProfileUser;

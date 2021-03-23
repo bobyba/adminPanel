@@ -1,0 +1,76 @@
+.table {
+}
+
+.parent {
+  background-color: white;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div3 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+.div4 {
+  grid-area: 2 / 2 / 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.div5 {
+  grid-area: 3 / 1 / 4 / 2;
+}
+.div6 {
+  grid-area: 4 / 1 / 6 / 2;
+}
+.div7 {
+  grid-area: 4 / 2 / 5 / 3;
+}
+.div8 {
+  grid-area: 5 / 2 / 6 / 3;
+}
+
+.cont {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-column-gap: 24px;
+  grid-row-gap: 0px;
+}
+
+.header {
+  color: black;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.periodCourse {
+  display: flex;
+}
+
+.contBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.descrip {
+  height: 78%;
+}
+
+.contAva {
+  display: flex;
+  justify-content: center;
+}
+
+.Avatar {
+  width: 110px;
+  height: 110px;
+}

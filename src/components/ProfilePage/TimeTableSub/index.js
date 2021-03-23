@@ -2,28 +2,29 @@ import { Button } from "antd";
 import { Header } from "antd/lib/layout/layout";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import HeaderBack from "../../utils/HeaderBack";
+import HeaderBack from "../../utils/Table";
 
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
+import FullCalendar, { formatDate } from "@fullcalendar/react";
+import listPlugin from "@fullcalendar/list";
+
+import ruLocale from "@fullcalendar/core/locales/ru";
 
 import s from "./index.module.css";
-
-const localizer = momentLocalizer(moment)
 
 const TimeTableSub = (props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <HeaderBack setStep={props.setStep} name="Расписание" step="main" />
-      <span className={s.Header}> Выберите ребенка: </span>
+      <HeaderBack setStep={props.setStep} name="Расписание" step="timetable" />
       <div className={s.contButtons}>
-     {/*    <Calendar
-          localizer={localizer}
-          events={myEventsList}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 500 }}
-        /> */}
+        <FullCalendar
+          headerToolbar={{ end: "prev,next" }}
+          locale={ruLocale}
+          height="auto"
+          className={s.Calendar}
+          initialView="listWeek"
+          events={props.selectedTimeTableData}
+          plugins={[listPlugin]}
+        />
       </div>
     </div>
   );
